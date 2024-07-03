@@ -21,7 +21,7 @@ class View(ft.UserControl):
         self._title = None
         self.txt_name = None
         self.btn_hello = None
-        self.txt_result = None
+        self._txtOut = None
         self.txt_container = None
         self._btnWorstCase = None
         self._txtHours = None

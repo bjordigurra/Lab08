@@ -14,7 +14,8 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
+        query = """ SELECT *
+                    FROM nerc """
 
         cursor.execute(query)
 
@@ -32,9 +33,12 @@ class DAO():
         result = []
 
         cursor = conn.cursor(dictionary=True)
-        query = """ ADD YOUR QUERY """
+        query = """ select *, timediff(date_event_finished, date_event_began) as durata
+                    from poweroutages 
+                    where nerc_id = %s
+                    """
 
-        cursor.execute(query, (nerc.id,))
+        cursor.execute(query, (nerc,))
 
         for row in cursor:
             result.append(
@@ -42,7 +46,7 @@ class DAO():
                       row["tag_id"], row["area_id"],
                       row["nerc_id"], row["responsible_id"],
                       row["customers_affected"], row["date_event_began"],
-                      row["date_event_finished"], row["demand_loss"]))
+                      row["date_event_finished"], row["demand_loss"], row["durata"]))
 
         cursor.close()
         conn.close()

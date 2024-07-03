@@ -13,6 +13,7 @@ class Event:
     _date_event_began: datetime
     _date_event_finished: datetime
     _demand_loss: int
+    _durata: datetime
 
     @property
     def id(self):
@@ -53,6 +54,10 @@ class Event:
     @property
     def demand_loss(self):
         return self._demand_loss
+
+    @property
+    def durata(self):
+        return self._durata
 
     def __str__(self):
         # return (f"PowerOutage [id={self._id}, nerc={self._nerc_id}, customers_affected={self._customers_affected} "
